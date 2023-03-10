@@ -4,6 +4,11 @@ from import_export.admin import ImportExportModelAdmin,ExportMixin
 from modeltranslation.admin import TranslationAdmin
 from .resources import * 
 from .models import *
+from django.contrib.auth.models import User,Group
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
+
 @admin.register(BotUser)
 class BotUserAdmin(admin.ModelAdmin):
     list_display = ['name','telegram_id','language','phone']
