@@ -24,7 +24,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 class SubCategory(models.Model):
     name = models.CharField(max_length=150,null=True,blank=True,verbose_name="SubCategory")
-    category = models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name="Category")
+    category = models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name="Category",related_name='subcategory')
     def __str__(self):
         return self.name
     class Meta:
@@ -38,7 +38,7 @@ class Product(models.Model):
         chained_model_field="category",
         show_all=False,
         auto_choose=True,
-        sort=True)
+        sort=True,related_name='products')
     image = models.ImageField(upload_to='product-images',verbose_name="Image",null=True,blank=True)
     about = models.TextField(null=True,blank=True,verbose_name="Info")
     price  = models.IntegerField(null=True,blank=True)
@@ -75,4 +75,10 @@ class OrderItem(models.Model):
            return (self.product.price - self.product.discount) * self.quantity
         else:
             return (self.product.price) * self.quantity
+    @property
+    def product_id(self):
+        return self.product.id
+    @property
+    def product_name(self):
+        return self.product.name
     

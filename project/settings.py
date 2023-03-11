@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     ######### Custom Packages #
     'smart_selects',
     'import_export',
-     'storages'
+    'storages',
     #########################
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -303,4 +304,4 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": True,
 }
->>>>>>> 3e3f88ece5246160ca68fb1653ff711eb29f3e11
+
